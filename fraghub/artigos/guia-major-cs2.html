@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia completo do Major de CS2 — FragHub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#0a0a0a; --bg2:#111111; --bg3:#1a1a1a; --accent:#e8a020; --accent2:#3a6bc4; --text:#f0f0f0; --muted:#888; --border:#222; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font-family:'Barlow',sans-serif; font-size:16px; line-height:1.6; }
+    a { color:inherit; text-decoration:none; }
+    header { background:var(--bg2); border-bottom:2px solid var(--accent); position:sticky; top:0; z-index:100; }
+    .header-inner { max-width:1200px; margin:0 auto; padding:0 24px; display:flex; align-items:center; justify-content:space-between; height:64px; }
+    .logo-text { font-family:'Barlow Condensed',sans-serif; font-size:28px; font-weight:900; letter-spacing:1px; }
+    .logo-text span:first-child { color:var(--accent2); }
+    .logo-text span:last-child { color:var(--accent); }
+    nav { display:flex; gap:4px; }
+    nav a { font-family:'Barlow Condensed',sans-serif; font-size:15px; font-weight:600; letter-spacing:0.5px; padding:6px 14px; border-radius:4px; color:var(--muted); transition:color 0.2s,background 0.2s; text-transform:uppercase; }
+    nav a:hover, nav a.active { color:var(--text); background:var(--bg3); }
+    .artigo-wrap { max-width:780px; margin:0 auto; padding:48px 24px 80px; }
+    .breadcrumb { font-family:'Barlow Condensed',sans-serif; font-size:13px; text-transform:uppercase; letter-spacing:0.5px; color:var(--muted); margin-bottom:24px; }
+    .breadcrumb a { color:var(--accent); }
+    .breadcrumb span { margin:0 6px; }
+    .artigo-categoria { display:inline-block; background:var(--accent); color:#000; font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; margin-bottom:16px; }
+    .artigo-titulo { font-family:'Barlow Condensed',sans-serif; font-size:48px; font-weight:900; line-height:1.05; letter-spacing:0.5px; margin-bottom:16px; }
+    .artigo-meta { display:flex; align-items:center; gap:16px; padding:14px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); margin-bottom:36px; font-size:13px; color:var(--muted); font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:0.5px; }
+    .artigo-meta strong { color:var(--accent); }
+    .artigo-conteudo { font-size:17px; line-height:1.8; color:#ccc; }
+    .artigo-conteudo p { margin-bottom:24px; }
+    .artigo-conteudo h2 { font-family:'Barlow Condensed',sans-serif; font-size:28px; font-weight:700; color:var(--text); margin:40px 0 16px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+    .artigo-conteudo h3 { font-family:'Barlow Condensed',sans-serif; font-size:22px; font-weight:700; color:var(--accent); margin:32px 0 12px; }
+    .artigo-conteudo strong { color:var(--text); font-weight:600; }
+    .artigo-conteudo ul, .artigo-conteudo ol { padding-left:24px; margin-bottom:24px; }
+    .artigo-conteudo li { margin-bottom:8px; }
+    .artigo-conteudo blockquote { border-left:3px solid var(--accent); padding:12px 20px; margin:28px 0; background:var(--bg2); color:#bbb; font-style:italic; }
+    .destaque-item { background:var(--bg2); border:1px solid var(--border); border-left:3px solid var(--accent); padding:20px 24px; margin-bottom:20px; }
+    .destaque-num { font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--accent); margin-bottom:6px; }
+    .destaque-nome { font-family:'Barlow Condensed',sans-serif; font-size:26px; font-weight:900; color:var(--text); margin-bottom:8px; }
+    .destaque-texto { font-size:15px; color:#aaa; line-height:1.6; }
+    .artigo-footer { margin-top:48px; padding-top:24px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+    .voltar-btn { font-family:'Barlow Condensed',sans-serif; font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--accent); border:1px solid var(--accent); padding:8px 20px; transition:background 0.2s,color 0.2s; }
+    .voltar-btn:hover { background:var(--accent); color:#000; }
+    .artigo-tags { display:flex; gap:8px; flex-wrap:wrap; }
+    .tag { font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; padding:4px 12px; border:1px solid var(--border); color:var(--muted); }
+        footer { background:var(--bg2); border-top:2px solid var(--accent); padding:40px 24px; }
+    .footer-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr auto auto; gap:40px; align-items:start; }
+    .footer-logo { font-family:'Barlow Condensed',sans-serif; font-size:24px; font-weight:900; margin-bottom:8px; }
+    .footer-logo span:first-child { color:var(--accent2); }
+    .footer-logo span:last-child { color:var(--accent); }
+    @media (max-width:768px) { .artigo-titulo { font-size:32px; } nav { display:none; } .menu-toggle { display:block; } .artigo-footer { flex-direction:column; gap:16px; } .footer-inner { grid-template-columns:1fr; gap:24px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../index.html"><div class="logo-text"><span>FRAG</span><span>HUB</span></div></a>
+      <nav>
+        <a href="../index.html">Início</a>
+        <a href="../noticias.html">Notícias</a>
+        <a href="../cenario-br.html">Cenário BR</a>
+        <a href="../rankings.html">Rankings</a>
+        <a href="../guias.html">Guias</a>
+        <a href="../perfis.html">Perfis</a>
+        <a href="../agenda.html">Agenda</a>
+        <a href="sobre.html">Sobre</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">☰</button>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="../index.html">Início</a>
+    <a href="../noticias.html">Notícias</a>
+    <a href="../cenario-br.html">Cenário BR</a>
+    <a href="../rankings.html">Rankings</a>
+    <a href="../guias.html">Guias</a>
+    <a href="../perfis.html">Perfis</a>
+    <a href="../agenda.html">Agenda</a>
+    <a href="sobre.html">Sobre</a>
+  </nav>
+
+  <div class="artigo-wrap">
+    <div class="breadcrumb"><a href="../index.html">Início</a><span>›</span><a href="../guias.html">Guias</a><span>›</span>Entenda o formato do Major de CS2 — guia</div>
+    <div class="artigo-categoria">Guia</div>
+    <h1 class="artigo-titulo">Entenda o formato do Major de CS2 — guia completo para iniciantes</h1>
+    <div class="artigo-meta">
+      <span>📅 14 de abril de 2026</span>
+      <span>✍️ <strong>FragHub</strong></span>
+      <span>⏱️ 6 min de leitura</span>
+    </div>
+    <div class="artigo-conteudo">
+      <p>O Major é o torneio mais importante do universo do Counter-Strike. Realizado duas vezes por ano, é o equivalente à Copa do Mundo do CS — o título mais cobiçado por qualquer time ou jogador do planeta. Se você está começando a acompanhar o cenário, este guia é o ponto de partida ideal.</p>
+
+      <h2>O que é o Major?</h2>
+      <p>O Major de CS2 é um campeonato mundial organizado pela Valve, a desenvolvedora do jogo. A Valve seleciona um organizador parceiro (como PGL, BLAST ou ESL) para realizar o evento, mas mantém total controle sobre o formato e as regras. O vencedor recebe o troféu mais cobiçado do CS e uma premiação milionária.</p>
+
+      <h2>Formato do torneio</h2>
+      <h3>Opening Stage (fase inicial)</h3>
+      <p>16 times se enfrentam em um sistema de grupos chamado <strong>Swiss System</strong>. Cada time joga até atingir 3 vitórias ou 3 derrotas. Os 8 melhores avançam para a próxima fase.</p>
+
+      <h3>Elimination Stage (fase intermediária)</h3>
+      <p>Outros 16 times entram nesta fase — 8 do Opening Stage e 8 pré-classificados. Mesmo formato Swiss. Os 8 melhores avançam para a fase final.</p>
+
+      <h3>Playoffs</h3>
+      <p>Os 8 classificados disputam em formato mata-mata. Quartas, semifinais e grande final — tudo ao melhor de 3 mapas, exceto a final que pode ser ao melhor de 5.</p>
+
+      <h2>Como os times se classificam?</h2>
+      <p>A Valve usa o <strong>sistema de pontos do ranking mundial</strong> para definir os times pré-classificados. Os demais vagas são disputadas em torneios classificatórios regionais — chamados de <strong>RMRs</strong> (Regional Major Rankings) — realizados meses antes do Major.</p>
+      <p>O Brasil tem sua própria chave no RMR das Américas, então times como FURIA, Imperial e paiN disputam vagas diretamente.</p>
+
+      <h2>Onde assistir?</h2>
+      <p>Os Majors são transmitidos ao vivo na <strong>Twitch</strong> e no <strong>YouTube</strong> pelos canais oficiais da PGL, BLAST ou do organizador responsável. Em português, o <strong>canal da CBCS</strong> e diversas equipes de narração independentes transmitem os jogos.</p>
+
+      <h2>Histórico do Brasil nos Majors</h2>
+      <p>O Brasil tem um histórico glorioso. A lendária <strong>SK Gaming</strong> (com FalleN, coldzera e fer) conquistou dois Majors consecutivos em 2016, tornando-se a única equipe a vencer o torneio duas vezes seguidas. A FURIA também já chegou às semifinais em múltiplas edições.</p>
+
+      <blockquote>"Quando um brasileiro ergue o troféu do Major, é uma vitória de toda a comunidade." — FragHub</blockquote>
+    </div>
+    <div class="artigo-footer">
+      <a href="../index.html" class="voltar-btn">← Voltar ao início</a>
+      <div class="artigo-tags"><span class="tag">CS2</span><span class="tag">Major</span><span class="tag">Guia</span><span class="tag">Torneios</span></div>
+    </div>
+  </div>
+    <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo"><span>FRAG</span><span>HUB</span></div>
+        <p class="footer-desc">O portal brasileiro de referência para o cenário de Counter-Strike 2.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Seções</h4>
+        <a href="../noticias.html">Notícias</a>
+        <a href="../cenario-br.html">Cenário BR</a>
+        <a href="../rankings.html">Rankings</a>
+        <a href="../guias.html">Guias</a>
+        <a href="../perfis.html">Perfis</a>
+        <a href="../agenda.html">Agenda</a>
+      </div>
+      <div class="footer-col">
+        <h4>FragHub</h4>
+        <a href="sobre.html">Sobre</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://x.com" target="_blank" rel="noopener">X (Twitter)</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 FragHub · O portal brasileiro de Counter-Strike 2</div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    toggle.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      toggle.textContent = isOpen ? '✕' : '☰';
+    });
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => { mobileNav.classList.remove('open'); toggle.textContent = '☰'; });
+    });
+  </script>
+
+</body>
+</html>

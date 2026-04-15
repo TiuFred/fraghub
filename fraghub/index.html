@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FragHub — O portal brasileiro de Counter-Strike 2</title>
+  <meta name="description" content="FragHub é o portal brasileiro de referência para o cenário de CS2. Cobertura de torneios, rankings atualizados, guias e tudo sobre Counter-Strike 2 em português.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="FragHub">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://thefraghub.com/">
+  <meta property="og:title" content="FragHub — O portal brasileiro de Counter-Strike 2">
+  <meta property="og:description" content="Cobertura de torneios, rankings atualizados, guias e tudo sobre CS2 em português.">
+  <meta property="og:site_name" content="FragHub">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FragHub — O portal brasileiro de Counter-Strike 2">
+  <meta name="twitter:description" content="Cobertura de torneios, rankings atualizados, guias e tudo sobre CS2 em português.">
+
+  <link rel="canonical" href="https://thefraghub.com/">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --bg3: #1a1a1a;
+      --accent: #e8a020;
+      --accent2: #3a6bc4;
+      --text: #f0f0f0;
+      --muted: #888;
+      --border: #222;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg); color: var(--text); font-family: 'Barlow', sans-serif; font-size: 16px; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+
+    /* HEADER */
+    header { background: var(--bg2); border-bottom: 2px solid var(--accent); position: sticky; top: 0; z-index: 100; }
+    .header-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo-text { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 900; letter-spacing: 1px; }
+    .logo-text span:first-child { color: var(--accent2); }
+    .logo-text span:last-child { color: var(--accent); }
+    nav { display: flex; gap: 4px; }
+    nav a { font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.5px; padding: 6px 14px; border-radius: 4px; color: var(--muted); transition: color 0.2s, background 0.2s; text-transform: uppercase; }
+    nav a:hover, nav a.active { color: var(--text); background: var(--bg3); }
+
+    /* MOBILE MENU */
+    .menu-toggle { display: none; background: none; border: none; color: var(--text); font-size: 26px; cursor: pointer; padding: 4px 8px; line-height: 1; }
+    .mobile-nav { display: none; position: fixed; top: 66px; left: 0; right: 0; bottom: 0; background: var(--bg); z-index: 99; padding: 24px; flex-direction: column; gap: 0; overflow-y: auto; }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { font-family: 'Barlow Condensed', sans-serif; font-size: 26px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text); padding: 16px 0; border-bottom: 1px solid var(--border); transition: color 0.2s; }
+    .mobile-nav a:hover, .mobile-nav a.active { color: var(--accent); }
+
+    /* HERO */
+    .hero { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 48px 24px; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 340px; gap: 24px; align-items: start; }
+    .hero-tag { display: inline-block; background: var(--accent); color: #000; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px; margin-bottom: 14px; }
+    .hero-title { font-family: 'Barlow Condensed', sans-serif; font-size: 48px; font-weight: 900; line-height: 1.05; margin-bottom: 14px; letter-spacing: 0.5px; }
+    .hero-title a:hover { color: var(--accent); transition: color 0.2s; }
+    .hero-excerpt { font-size: 16px; color: #bbb; margin-bottom: 16px; max-width: 600px; }
+    .hero-meta { font-size: 13px; color: var(--muted); font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.5px; text-transform: uppercase; }
+    .hero-meta span { color: var(--accent); margin-right: 6px; }
+    .hero-read-more { display: inline-block; margin-top: 20px; font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--accent); border: 1px solid var(--accent); padding: 8px 20px; transition: background 0.2s, color 0.2s; }
+    .hero-read-more:hover { background: var(--accent); color: #000; }
+
+    .sidebar-destaques { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .destaque-item { background: var(--bg2); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; transition: background 0.2s; }
+    .destaque-item:hover { background: var(--bg3); }
+    .destaque-tag { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--accent); }
+    .destaque-title { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; line-height: 1.2; color: var(--text); }
+    .destaque-meta { font-size: 12px; color: var(--muted); }
+
+    /* MAIN */
+    .main { max-width: 1200px; margin: 0 auto; padding: 40px 24px; display: grid; grid-template-columns: 1fr 300px; gap: 40px; }
+    .section-label { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 24px; }
+    .articles { display: flex; flex-direction: column; gap: 24px; }
+    .article-card { display: flex; gap: 20px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+    .article-card:last-child { border-bottom: none; }
+    .article-num { font-family: 'Barlow Condensed', sans-serif; font-size: 48px; font-weight: 900; color: var(--border); line-height: 1; min-width: 40px; padding-top: 4px; }
+    .article-body { flex: 1; }
+    .article-tag { display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent2); margin-bottom: 6px; }
+    .article-title { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; line-height: 1.2; margin-bottom: 8px; }
+    .article-title a:hover { color: var(--accent); transition: color 0.2s; }
+    .article-excerpt { font-size: 14px; color: #aaa; margin-bottom: 10px; line-height: 1.5; }
+    .article-meta { font-size: 12px; color: var(--muted); font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
+    .article-meta strong { color: var(--accent); }
+    .article-read-more { display: inline-block; margin-top: 10px; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--accent); transition: opacity 0.2s; }
+    .article-read-more:hover { opacity: 0.7; }
+
+    /* SIDEBAR */
+    .sidebar { display: flex; flex-direction: column; gap: 32px; }
+    .sidebar-box { background: var(--bg2); border: 1px solid var(--border); padding: 20px; }
+    .sidebar-box .section-label { margin-bottom: 16px; }
+    .ranking-list { display: flex; flex-direction: column; gap: 12px; }
+    .ranking-item { display: flex; align-items: center; gap: 12px; }
+    .ranking-pos { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 900; color: var(--accent); min-width: 28px; }
+    .ranking-name { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; }
+    .ranking-score { margin-left: auto; font-size: 12px; color: var(--muted); font-family: 'Barlow Condensed', sans-serif; }
+    .agenda-list { display: flex; flex-direction: column; gap: 10px; }
+    .agenda-item { display: flex; gap: 12px; align-items: flex-start; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+    .agenda-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .agenda-date { background: var(--accent); color: #000; font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; padding: 2px 8px; white-space: nowrap; margin-top: 2px; }
+    .agenda-event { font-size: 13px; font-weight: 500; line-height: 1.3; }
+    .agenda-local { font-size: 12px; color: var(--muted); }
+    .sobre-box { background: var(--bg2); border-left: 3px solid var(--accent); padding: 20px; font-size: 14px; color: #bbb; line-height: 1.7; }
+    .sobre-box strong { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+
+    /* FOOTER */
+    footer { background: var(--bg2); border-top: 2px solid var(--accent); padding: 40px 24px; margin-top: 40px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto auto; gap: 40px; align-items: start; }
+    .footer-brand { }
+    .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 900; margin-bottom: 8px; }
+    .footer-logo span:first-child { color: var(--accent2); }
+    .footer-logo span:last-child { color: var(--accent); }
+    .footer-desc { font-size: 13px; color: var(--muted); max-width: 280px; line-height: 1.5; }
+    .footer-col h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 12px; }
+    .footer-col a { display: block; font-size: 13px; color: var(--muted); margin-bottom: 8px; transition: color 0.2s; font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
+    .footer-col a:hover { color: var(--text); }
+    .footer-bottom { max-width: 1200px; margin: 24px auto 0; padding-top: 20px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .sidebar-destaques { display: none; }
+      .main { grid-template-columns: 1fr; }
+      .hero-title { font-size: 32px; }
+      nav { display: none; }
+      .menu-toggle { display: block; }
+      .footer-inner { grid-template-columns: 1fr; gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html"><div class="logo-text"><span>FRAG</span><span>HUB</span></div></a>
+      <nav>
+        <a href="index.html" class="active">Início</a>
+        <a href="noticias.html">Notícias</a>
+        <a href="cenario-br.html">Cenário BR</a>
+        <a href="rankings.html">Rankings</a>
+        <a href="guias.html">Guias</a>
+        <a href="perfis.html">Perfis</a>
+        <a href="agenda.html">Agenda</a>
+        <a href="artigos/sobre.html">Sobre</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">☰</button>
+    </div>
+  </header>
+
+  <!-- Menu mobile -->
+  <nav class="mobile-nav" id="mobileNav" aria-label="Menu mobile">
+    <a href="index.html" class="active">Início</a>
+    <a href="noticias.html">Notícias</a>
+    <a href="cenario-br.html">Cenário BR</a>
+    <a href="rankings.html">Rankings</a>
+    <a href="guias.html">Guias</a>
+    <a href="perfis.html">Perfis</a>
+    <a href="agenda.html">Agenda</a>
+    <a href="artigos/sobre.html">Sobre</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-main">
+        <!-- ✏️ EDITE: matéria principal em destaque -->
+        <div class="hero-tag">Destaque</div>
+        <h1 class="hero-title"><a href="artigos/top5-jogadores.html">Os 5 melhores jogadores brasileiros de CS da história</a></h1>
+        <p class="hero-excerpt">Do FalleN ao KSCERATO, o Brasil sempre foi potência no Counter-Strike. Confira nossa lista dos maiores nomes que o país já revelou para o cenário mundial.</p>
+        <div class="hero-meta"><span>Especial</span> · 15 de abril de 2026 · FragHub</div>
+        <a href="artigos/top5-jogadores.html" class="hero-read-more">Ler matéria →</a>
+      </div>
+      <div class="sidebar-destaques">
+        <!-- ✏️ EDITE: destaques secundários — adicione um bloco por artigo novo -->
+        <a href="artigos/ranking-times-br.html" class="destaque-item">
+          <div class="destaque-tag">Rankings</div>
+          <div class="destaque-title">Ranking dos melhores times brasileiros de CS2 em 2025</div>
+          <div class="destaque-meta">Rankings · 14 abr</div>
+        </a>
+        <a href="artigos/configs-crosshair.html" class="destaque-item">
+          <div class="destaque-tag">Guia</div>
+          <div class="destaque-title">As melhores configs de crosshair dos pros brasileiros</div>
+          <div class="destaque-meta">Guias · 13 abr</div>
+        </a>
+        <a href="artigos/liga-brasileira-cs2.html" class="destaque-item">
+          <div class="destaque-tag">Cenário BR</div>
+          <div class="destaque-title">Como funciona a Liga Brasileira de CS2?</div>
+          <div class="destaque-meta">Cenário BR · 12 abr</div>
+        </a>
+        <a href="artigos/cs2-vs-csgo.html" class="destaque-item">
+          <div class="destaque-tag">Análise</div>
+          <div class="destaque-title">CS2 vs CS:GO — o que mudou e o que os pros acham</div>
+          <div class="destaque-meta">Análise · 11 abr</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="main">
+    <main>
+      <div class="section-label">Últimas publicações</div>
+      <div class="articles">
+
+        <!-- ✏️ PARA ADICIONAR NOVO ARTIGO: copie um bloco abaixo, cole no topo e edite -->
+
+        <article class="article-card">
+          <div class="article-num">01</div>
+          <div class="article-body">
+            <div class="article-tag">Especial</div>
+            <h2 class="article-title"><a href="artigos/top5-jogadores.html">Os 5 melhores jogadores brasileiros de CS da história</a></h2>
+            <p class="article-excerpt">Do FalleN ao KSCERATO, o Brasil sempre foi potência no CS. Confira nossa lista dos maiores nomes que o país revelou.</p>
+            <div class="article-meta"><strong>Especial</strong> · 15 de abril de 2026</div>
+            <a href="artigos/top5-jogadores.html" class="article-read-more">Ler mais →</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <div class="article-num">02</div>
+          <div class="article-body">
+            <div class="article-tag">Guia</div>
+            <h2 class="article-title"><a href="artigos/guia-major-cs2.html">Entenda o formato do Major de CS2 — guia completo para iniciantes</a></h2>
+            <p class="article-excerpt">O Major é o torneio mais importante do CS. Entenda como funciona a classificação, grupos e fases eliminatórias.</p>
+            <div class="article-meta"><strong>Guia</strong> · 14 de abril de 2026</div>
+            <a href="artigos/guia-major-cs2.html" class="article-read-more">Ler mais →</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <div class="article-num">03</div>
+          <div class="article-body">
+            <div class="article-tag">Rankings</div>
+            <h2 class="article-title"><a href="artigos/ranking-times-br.html">Ranking: os melhores times brasileiros de CS2 em 2025</a></h2>
+            <p class="article-excerpt">FURIA, Imperial, paiN — quem lidera o cenário nacional? Veja nossa análise atualizada dos principais times do Brasil.</p>
+            <div class="article-meta"><strong>Rankings</strong> · 13 de abril de 2026</div>
+            <a href="artigos/ranking-times-br.html" class="article-read-more">Ler mais →</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <div class="article-num">04</div>
+          <div class="article-body">
+            <div class="article-tag">Cenário BR</div>
+            <h2 class="article-title"><a href="artigos/liga-brasileira-cs2.html">Como funciona a Liga Brasileira de CS2? Tudo que você precisa saber</a></h2>
+            <p class="article-excerpt">A LBCS é a principal competição nacional de CS2. Entenda o formato, os times participantes e como acompanhar ao vivo.</p>
+            <div class="article-meta"><strong>Cenário BR</strong> · 12 de abril de 2026</div>
+            <a href="artigos/liga-brasileira-cs2.html" class="article-read-more">Ler mais →</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <div class="article-num">05</div>
+          <div class="article-body">
+            <div class="article-tag">Guia</div>
+            <h2 class="article-title"><a href="artigos/configs-crosshair.html">As melhores configurações de crosshair dos pros brasileiros</a></h2>
+            <p class="article-excerpt">Copie a crosshair do FalleN, KSCERATO, chelo e outros. Códigos prontos para importar no CS2.</p>
+            <div class="article-meta"><strong>Guia</strong> · 11 de abril de 2026</div>
+            <a href="artigos/configs-crosshair.html" class="article-read-more">Ler mais →</a>
+          </div>
+        </article>
+
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="sidebar-box">
+        <div class="section-label">Top times BR</div>
+        <div class="ranking-list">
+          <!-- ✏️ EDITE: atualize mensalmente -->
+          <div class="ranking-item"><div class="ranking-pos">1</div><div class="ranking-name">FURIA</div><div class="ranking-score">#8 mundial</div></div>
+          <div class="ranking-item"><div class="ranking-pos">2</div><div class="ranking-name">Imperial</div><div class="ranking-score">#24 mundial</div></div>
+          <div class="ranking-item"><div class="ranking-pos">3</div><div class="ranking-name">paiN</div><div class="ranking-score">#31 mundial</div></div>
+          <div class="ranking-item"><div class="ranking-pos">4</div><div class="ranking-name">MIBR</div><div class="ranking-score">#38 mundial</div></div>
+          <div class="ranking-item"><div class="ranking-pos">5</div><div class="ranking-name">Complexity BR</div><div class="ranking-score">#45 mundial</div></div>
+        </div>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="section-label">Próximos torneios</div>
+        <div class="agenda-list">
+          <!-- ✏️ EDITE: atualize conforme os torneios aparecerem -->
+          <div class="agenda-item"><div class="agenda-date">ABR 20</div><div><div class="agenda-event">BLAST Premier Spring Finals</div><div class="agenda-local">Copenhague, DIN</div></div></div>
+          <div class="agenda-item"><div class="agenda-date">MAI 05</div><div><div class="agenda-event">ESL Pro League S21</div><div class="agenda-local">Malta</div></div></div>
+          <div class="agenda-item"><div class="agenda-date">MAI 18</div><div><div class="agenda-event">Liga Brasileira de CS2 — Rodada 8</div><div class="agenda-local">Online · BR</div></div></div>
+          <div class="agenda-item"><div class="agenda-date">JUN 10</div><div><div class="agenda-event">PGL Major Antwerp 2026</div><div class="agenda-local">Antuérpia, BEL</div></div></div>
+        </div>
+      </div>
+
+      <div class="sobre-box">
+        <strong>O que é o FragHub?</strong>
+        O FragHub é o portal brasileiro de referência para o cenário de Counter-Strike. Cobertura de torneios, rankings, guias e tudo sobre o CS2 em português.
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo"><span>FRAG</span><span>HUB</span></div>
+        <p class="footer-desc">O portal brasileiro de referência para o cenário de Counter-Strike 2. Notícias, rankings, guias e muito mais.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Seções</h4>
+        <a href="noticias.html">Notícias</a>
+        <a href="cenario-br.html">Cenário BR</a>
+        <a href="rankings.html">Rankings</a>
+        <a href="guias.html">Guias</a>
+        <a href="perfis.html">Perfis</a>
+        <a href="agenda.html">Agenda</a>
+      </div>
+      <div class="footer-col">
+        <h4>FragHub</h4>
+        <a href="artigos/sobre.html">Sobre</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://x.com" target="_blank" rel="noopener">X (Twitter)</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 FragHub · O portal brasileiro de Counter-Strike 2</div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    toggle.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      toggle.textContent = isOpen ? '✕' : '☰';
+      toggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+    });
+    // Fecha o menu ao clicar em um link
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        toggle.textContent = '☰';
+      });
+    });
+  </script>
+
+</body>
+</html>

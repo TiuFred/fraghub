@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS2 vs CS:GO — o que mudou — FragHub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#0a0a0a; --bg2:#111111; --bg3:#1a1a1a; --accent:#e8a020; --accent2:#3a6bc4; --text:#f0f0f0; --muted:#888; --border:#222; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font-family:'Barlow',sans-serif; font-size:16px; line-height:1.6; }
+    a { color:inherit; text-decoration:none; }
+    header { background:var(--bg2); border-bottom:2px solid var(--accent); position:sticky; top:0; z-index:100; }
+    .header-inner { max-width:1200px; margin:0 auto; padding:0 24px; display:flex; align-items:center; justify-content:space-between; height:64px; }
+    .logo-text { font-family:'Barlow Condensed',sans-serif; font-size:28px; font-weight:900; letter-spacing:1px; }
+    .logo-text span:first-child { color:var(--accent2); }
+    .logo-text span:last-child { color:var(--accent); }
+    nav { display:flex; gap:4px; }
+    nav a { font-family:'Barlow Condensed',sans-serif; font-size:15px; font-weight:600; letter-spacing:0.5px; padding:6px 14px; border-radius:4px; color:var(--muted); transition:color 0.2s,background 0.2s; text-transform:uppercase; }
+    nav a:hover, nav a.active { color:var(--text); background:var(--bg3); }
+    .artigo-wrap { max-width:780px; margin:0 auto; padding:48px 24px 80px; }
+    .breadcrumb { font-family:'Barlow Condensed',sans-serif; font-size:13px; text-transform:uppercase; letter-spacing:0.5px; color:var(--muted); margin-bottom:24px; }
+    .breadcrumb a { color:var(--accent); }
+    .breadcrumb span { margin:0 6px; }
+    .artigo-categoria { display:inline-block; background:var(--accent); color:#000; font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; margin-bottom:16px; }
+    .artigo-titulo { font-family:'Barlow Condensed',sans-serif; font-size:48px; font-weight:900; line-height:1.05; letter-spacing:0.5px; margin-bottom:16px; }
+    .artigo-meta { display:flex; align-items:center; gap:16px; padding:14px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); margin-bottom:36px; font-size:13px; color:var(--muted); font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:0.5px; }
+    .artigo-meta strong { color:var(--accent); }
+    .artigo-conteudo { font-size:17px; line-height:1.8; color:#ccc; }
+    .artigo-conteudo p { margin-bottom:24px; }
+    .artigo-conteudo h2 { font-family:'Barlow Condensed',sans-serif; font-size:28px; font-weight:700; color:var(--text); margin:40px 0 16px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+    .artigo-conteudo h3 { font-family:'Barlow Condensed',sans-serif; font-size:22px; font-weight:700; color:var(--accent); margin:32px 0 12px; }
+    .artigo-conteudo strong { color:var(--text); font-weight:600; }
+    .artigo-conteudo ul, .artigo-conteudo ol { padding-left:24px; margin-bottom:24px; }
+    .artigo-conteudo li { margin-bottom:8px; }
+    .artigo-conteudo blockquote { border-left:3px solid var(--accent); padding:12px 20px; margin:28px 0; background:var(--bg2); color:#bbb; font-style:italic; }
+    .destaque-item { background:var(--bg2); border:1px solid var(--border); border-left:3px solid var(--accent); padding:20px 24px; margin-bottom:20px; }
+    .destaque-num { font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--accent); margin-bottom:6px; }
+    .destaque-nome { font-family:'Barlow Condensed',sans-serif; font-size:26px; font-weight:900; color:var(--text); margin-bottom:8px; }
+    .destaque-texto { font-size:15px; color:#aaa; line-height:1.6; }
+    .artigo-footer { margin-top:48px; padding-top:24px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+    .voltar-btn { font-family:'Barlow Condensed',sans-serif; font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--accent); border:1px solid var(--accent); padding:8px 20px; transition:background 0.2s,color 0.2s; }
+    .voltar-btn:hover { background:var(--accent); color:#000; }
+    .artigo-tags { display:flex; gap:8px; flex-wrap:wrap; }
+    .tag { font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; padding:4px 12px; border:1px solid var(--border); color:var(--muted); }
+        footer { background:var(--bg2); border-top:2px solid var(--accent); padding:40px 24px; }
+    .footer-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr auto auto; gap:40px; align-items:start; }
+    .footer-logo { font-family:'Barlow Condensed',sans-serif; font-size:24px; font-weight:900; margin-bottom:8px; }
+    .footer-logo span:first-child { color:var(--accent2); }
+    .footer-logo span:last-child { color:var(--accent); }
+    @media (max-width:768px) { .artigo-titulo { font-size:32px; } nav { display:none; } .menu-toggle { display:block; } .artigo-footer { flex-direction:column; gap:16px; } .footer-inner { grid-template-columns:1fr; gap:24px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../index.html"><div class="logo-text"><span>FRAG</span><span>HUB</span></div></a>
+      <nav>
+        <a href="../index.html">Início</a>
+        <a href="../noticias.html">Notícias</a>
+        <a href="../cenario-br.html">Cenário BR</a>
+        <a href="../rankings.html">Rankings</a>
+        <a href="../guias.html">Guias</a>
+        <a href="../perfis.html">Perfis</a>
+        <a href="../agenda.html">Agenda</a>
+        <a href="sobre.html">Sobre</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">☰</button>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="../index.html">Início</a>
+    <a href="../noticias.html">Notícias</a>
+    <a href="../cenario-br.html">Cenário BR</a>
+    <a href="../rankings.html">Rankings</a>
+    <a href="../guias.html">Guias</a>
+    <a href="../perfis.html">Perfis</a>
+    <a href="../agenda.html">Agenda</a>
+    <a href="sobre.html">Sobre</a>
+  </nav>
+
+  <div class="artigo-wrap">
+    <div class="breadcrumb"><a href="../index.html">Início</a><span>›</span><a href="../noticias.html">Notícias</a><span>›</span>CS2 vs CS:GO — o que mudou e o que os pr</div>
+    <div class="artigo-categoria">Análise</div>
+    <h1 class="artigo-titulo">CS2 vs CS:GO — o que mudou e o que os pros acham</h1>
+    <div class="artigo-meta">
+      <span>📅 11 de abril de 2026</span>
+      <span>✍️ <strong>FragHub</strong></span>
+      <span>⏱️ 5 min de leitura</span>
+    </div>
+    <div class="artigo-conteudo">
+      <p>Desde o lançamento do CS2 em setembro de 2023, a comunidade brasileira ficou dividida. De um lado, jogadores empolgados com o novo motor gráfico e as mecânicas atualizadas. Do outro, veteranos do CS:GO saudosos de uma versão que consideravam mais refinada. Dois anos depois, é possível fazer uma análise mais fria. O que mudou de verdade?</p>
+
+      <h2>O que é o CS2?</h2>
+      <p>CS2 é a versão mais recente do Counter-Strike, lançada pela Valve como uma atualização gratuita que substituiu permanentemente o CS:GO. Roda no motor gráfico <strong>Source 2</strong> — o mesmo do Dota 2 — o que permitiu melhorias visuais significativas e mudanças técnicas nas mecânicas do jogo.</p>
+
+      <h2>O que mudou para melhor</h2>
+      <ul>
+        <li><strong>Gráficos e iluminação:</strong> o CS2 é visivelmente mais bonito, com sombras e reflexos mais realistas</li>
+        <li><strong>Sistema de smoke:</strong> as fumaças agora são volumétricas — reagem a tiros e explosões, mudando completamente a estratégia do jogo</li>
+        <li><strong>Subtick:</strong> o registro de tiros ficou mais preciso, independente da taxa de atualização do servidor</li>
+        <li><strong>Interface:</strong> menus e HUD foram redesenhados e estão mais limpos</li>
+      </ul>
+
+      <h2>O que os pros brasileiros acham</h2>
+      <p>A opinião no cenário profissional é mista. <strong>KSCERATO</strong> e <strong>yuurih</strong> se adaptaram bem e elogiam o subtick. Já jogadores mais veteranos, como <strong>FalleN</strong>, foram públicos ao criticar bugs e a falta de polimento no lançamento — problemas que a Valve tem corrigido ao longo das atualizações.</p>
+
+      <h2>O que ainda falta no CS2</h2>
+      <ul>
+        <li>Pool de mapas menor que o CS:GO no lançamento</li>
+        <li>Alguns bugs de hitbox ainda reportados pela comunidade</li>
+        <li>Sistema antitrapaça (VAC Live) ainda em desenvolvimento</li>
+        <li>Ferramentas para criadores de mapas e workshops mais limitadas</li>
+      </ul>
+
+      <h2>Conclusão: vale jogar CS2?</h2>
+      <p>Sim — sem dúvida. O CS2 já é mais estável do que no lançamento e a Valve continua atualizando. A curva de adaptação existe, mas o jogo mantém a essência que fez o Counter-Strike ser o maior FPS competitivo da história. O cenário profissional está 100% no CS2 e o Brasil está bem representado.</p>
+
+      <blockquote>"O CS2 não é perfeito, mas está evoluindo. E o Brasil está evoluindo junto." — FragHub</blockquote>
+    </div>
+    <div class="artigo-footer">
+      <a href="../index.html" class="voltar-btn">← Voltar ao início</a>
+      <div class="artigo-tags"><span class="tag">CS2</span><span class="tag">CSGO</span><span class="tag">Análise</span><span class="tag">Mecânicas</span></div>
+    </div>
+  </div>
+    <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo"><span>FRAG</span><span>HUB</span></div>
+        <p class="footer-desc">O portal brasileiro de referência para o cenário de Counter-Strike 2.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Seções</h4>
+        <a href="../noticias.html">Notícias</a>
+        <a href="../cenario-br.html">Cenário BR</a>
+        <a href="../rankings.html">Rankings</a>
+        <a href="../guias.html">Guias</a>
+        <a href="../perfis.html">Perfis</a>
+        <a href="../agenda.html">Agenda</a>
+      </div>
+      <div class="footer-col">
+        <h4>FragHub</h4>
+        <a href="sobre.html">Sobre</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://x.com" target="_blank" rel="noopener">X (Twitter)</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 FragHub · O portal brasileiro de Counter-Strike 2</div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    toggle.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      toggle.textContent = isOpen ? '✕' : '☰';
+    });
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => { mobileNav.classList.remove('open'); toggle.textContent = '☰'; });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ranking dos melhores times brasileiros de CS2 — FragHub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#0a0a0a; --bg2:#111111; --bg3:#1a1a1a; --accent:#e8a020; --accent2:#3a6bc4; --text:#f0f0f0; --muted:#888; --border:#222; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font-family:'Barlow',sans-serif; font-size:16px; line-height:1.6; }
+    a { color:inherit; text-decoration:none; }
+    header { background:var(--bg2); border-bottom:2px solid var(--accent); position:sticky; top:0; z-index:100; }
+    .header-inner { max-width:1200px; margin:0 auto; padding:0 24px; display:flex; align-items:center; justify-content:space-between; height:64px; }
+    .logo-text { font-family:'Barlow Condensed',sans-serif; font-size:28px; font-weight:900; letter-spacing:1px; }
+    .logo-text span:first-child { color:var(--accent2); }
+    .logo-text span:last-child { color:var(--accent); }
+    nav { display:flex; gap:4px; }
+    nav a { font-family:'Barlow Condensed',sans-serif; font-size:15px; font-weight:600; letter-spacing:0.5px; padding:6px 14px; border-radius:4px; color:var(--muted); transition:color 0.2s,background 0.2s; text-transform:uppercase; }
+    nav a:hover, nav a.active { color:var(--text); background:var(--bg3); }
+    .artigo-wrap { max-width:780px; margin:0 auto; padding:48px 24px 80px; }
+    .breadcrumb { font-family:'Barlow Condensed',sans-serif; font-size:13px; text-transform:uppercase; letter-spacing:0.5px; color:var(--muted); margin-bottom:24px; }
+    .breadcrumb a { color:var(--accent); }
+    .breadcrumb span { margin:0 6px; }
+    .artigo-categoria { display:inline-block; background:var(--accent); color:#000; font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; margin-bottom:16px; }
+    .artigo-titulo { font-family:'Barlow Condensed',sans-serif; font-size:48px; font-weight:900; line-height:1.05; letter-spacing:0.5px; margin-bottom:16px; }
+    .artigo-meta { display:flex; align-items:center; gap:16px; padding:14px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); margin-bottom:36px; font-size:13px; color:var(--muted); font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:0.5px; }
+    .artigo-meta strong { color:var(--accent); }
+    .artigo-conteudo { font-size:17px; line-height:1.8; color:#ccc; }
+    .artigo-conteudo p { margin-bottom:24px; }
+    .artigo-conteudo h2 { font-family:'Barlow Condensed',sans-serif; font-size:28px; font-weight:700; color:var(--text); margin:40px 0 16px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+    .artigo-conteudo h3 { font-family:'Barlow Condensed',sans-serif; font-size:22px; font-weight:700; color:var(--accent); margin:32px 0 12px; }
+    .artigo-conteudo strong { color:var(--text); font-weight:600; }
+    .artigo-conteudo ul, .artigo-conteudo ol { padding-left:24px; margin-bottom:24px; }
+    .artigo-conteudo li { margin-bottom:8px; }
+    .artigo-conteudo blockquote { border-left:3px solid var(--accent); padding:12px 20px; margin:28px 0; background:var(--bg2); color:#bbb; font-style:italic; }
+    .destaque-item { background:var(--bg2); border:1px solid var(--border); border-left:3px solid var(--accent); padding:20px 24px; margin-bottom:20px; }
+    .destaque-num { font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--accent); margin-bottom:6px; }
+    .destaque-nome { font-family:'Barlow Condensed',sans-serif; font-size:26px; font-weight:900; color:var(--text); margin-bottom:8px; }
+    .destaque-texto { font-size:15px; color:#aaa; line-height:1.6; }
+    .artigo-footer { margin-top:48px; padding-top:24px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+    .voltar-btn { font-family:'Barlow Condensed',sans-serif; font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--accent); border:1px solid var(--accent); padding:8px 20px; transition:background 0.2s,color 0.2s; }
+    .voltar-btn:hover { background:var(--accent); color:#000; }
+    .artigo-tags { display:flex; gap:8px; flex-wrap:wrap; }
+    .tag { font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; padding:4px 12px; border:1px solid var(--border); color:var(--muted); }
+        footer { background:var(--bg2); border-top:2px solid var(--accent); padding:40px 24px; }
+    .footer-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr auto auto; gap:40px; align-items:start; }
+    .footer-logo { font-family:'Barlow Condensed',sans-serif; font-size:24px; font-weight:900; margin-bottom:8px; }
+    .footer-logo span:first-child { color:var(--accent2); }
+    .footer-logo span:last-child { color:var(--accent); }
+    @media (max-width:768px) { .artigo-titulo { font-size:32px; } nav { display:none; } .menu-toggle { display:block; } .artigo-footer { flex-direction:column; gap:16px; } .footer-inner { grid-template-columns:1fr; gap:24px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../index.html"><div class="logo-text"><span>FRAG</span><span>HUB</span></div></a>
+      <nav>
+        <a href="../index.html">Início</a>
+        <a href="../noticias.html">Notícias</a>
+        <a href="../cenario-br.html">Cenário BR</a>
+        <a href="../rankings.html">Rankings</a>
+        <a href="../guias.html">Guias</a>
+        <a href="../perfis.html">Perfis</a>
+        <a href="../agenda.html">Agenda</a>
+        <a href="sobre.html">Sobre</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">☰</button>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="../index.html">Início</a>
+    <a href="../noticias.html">Notícias</a>
+    <a href="../cenario-br.html">Cenário BR</a>
+    <a href="../rankings.html">Rankings</a>
+    <a href="../guias.html">Guias</a>
+    <a href="../perfis.html">Perfis</a>
+    <a href="../agenda.html">Agenda</a>
+    <a href="sobre.html">Sobre</a>
+  </nav>
+
+  <div class="artigo-wrap">
+    <div class="breadcrumb"><a href="../index.html">Início</a><span>›</span><a href="../rankings.html">Rankings</a><span>›</span>Ranking: os melhores times brasileiros d</div>
+    <div class="artigo-categoria">Rankings</div>
+    <h1 class="artigo-titulo">Ranking: os melhores times brasileiros de CS2 em 2025</h1>
+    <div class="artigo-meta">
+      <span>📅 13 de abril de 2026</span>
+      <span>✍️ <strong>FragHub</strong></span>
+      <span>⏱️ 4 min de leitura</span>
+    </div>
+    <div class="artigo-conteudo">
+      <p>O cenário brasileiro de CS2 nunca foi tão competitivo. Com times brigando no top mundial e uma liga nacional cada vez mais forte, acompanhar quem está no topo ficou mais emocionante — e mais difícil. Aqui está o ranking atualizado dos melhores times do Brasil.</p>
+
+      <div class="destaque-item">
+        <div class="destaque-num"># 1</div>
+        <div class="destaque-nome">FURIA Esports</div>
+        <div class="destaque-texto">A FURIA continua sendo a representante máxima do CS brasileiro no cenário mundial. Com KSCERATO e yuurih como pilares, o time mantém presença constante entre os top 10 do ranking mundial do HLTV. Estilo agressivo, identidade forte e uma torcida fanática que acompanha em todo torneio.</div>
+      </div>
+      <div class="destaque-item">
+        <div class="destaque-num"># 2</div>
+        <div class="destaque-nome">Imperial Esports</div>
+        <div class="destaque-texto">A Imperial tem sido a surpresa positiva do cenário nacional. Com uma lineup sólida e resultados consistentes nos torneios das Américas, o time se consolidou como segunda força do Brasil e já mostrou capacidade de vencer equipes europeias de alto nível.</div>
+      </div>
+      <div class="destaque-item">
+        <div class="destaque-num"># 3</div>
+        <div class="destaque-nome">paiN Gaming</div>
+        <div class="destaque-texto">Uma das organizações mais históricas do CS brasileiro, a paiN mantém time competitivo e investe constantemente em revelação de talentos. Presença regular nas classificatórias do Major e na Liga Brasileira de CS2.</div>
+      </div>
+      <div class="destaque-item">
+        <div class="destaque-num"># 4</div>
+        <div class="destaque-nome">MIBR</div>
+        <div class="destaque-texto">A marca mais icônica do CS brasileiro voltou com força. Com FalleN encabeçando o projeto, o MIBR carrega o peso de uma história gloriosa e tenta devolver o nome ao topo. A torcida é apaixonada e o potencial é inegável.</div>
+      </div>
+      <div class="destaque-item">
+        <div class="destaque-num"># 5</div>
+        <div class="destaque-nome">Case Esports</div>
+        <div class="destaque-texto">A Case representa a força da cena competitiva regional brasileira. Time jovem, com jogadores em desenvolvimento que frequentemente surpreendem nas competições nacionais e servem de vitrine para os grandes times.</div>
+      </div>
+
+      <h2>Como o ranking é calculado?</h2>
+      <p>O ranking considera os resultados nos últimos 6 meses em torneios com premiação acima de $50.000. Torneios com selos da Valve (como o Major) têm peso maior. O HLTV.org é a fonte oficial usada pelo FragHub para os dados.</p>
+
+      <blockquote>"O Brasil tem cinco times capazes de vencer qualquer equipe do mundo num bom dia. Isso é uma raridade no cenário global." — FragHub</blockquote>
+    </div>
+    <div class="artigo-footer">
+      <a href="../index.html" class="voltar-btn">← Voltar ao início</a>
+      <div class="artigo-tags"><span class="tag">CS2</span><span class="tag">Rankings</span><span class="tag">Brasil</span><span class="tag">Times</span></div>
+    </div>
+  </div>
+    <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo"><span>FRAG</span><span>HUB</span></div>
+        <p class="footer-desc">O portal brasileiro de referência para o cenário de Counter-Strike 2.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Seções</h4>
+        <a href="../noticias.html">Notícias</a>
+        <a href="../cenario-br.html">Cenário BR</a>
+        <a href="../rankings.html">Rankings</a>
+        <a href="../guias.html">Guias</a>
+        <a href="../perfis.html">Perfis</a>
+        <a href="../agenda.html">Agenda</a>
+      </div>
+      <div class="footer-col">
+        <h4>FragHub</h4>
+        <a href="sobre.html">Sobre</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://x.com" target="_blank" rel="noopener">X (Twitter)</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 FragHub · O portal brasileiro de Counter-Strike 2</div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    toggle.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      toggle.textContent = isOpen ? '✕' : '☰';
+    });
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => { mobileNav.classList.remove('open'); toggle.textContent = '☰'; });
+    });
+  </script>
+
+</body>
+</html>

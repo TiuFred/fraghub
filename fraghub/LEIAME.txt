@@ -1,0 +1,96 @@
+=========================================
+  FRAGHUB — GUIA DE USO
+=========================================
+
+ESTRUTURA DE PASTAS:
+--------------------
+FragHub/
+├── index.html               ← Página inicial (nunca delete)
+└── artigos/
+    ├── _MODELO.html         ← Template base (nunca delete, nunca edite)
+    ├── top5-jogadores.html  ← Artigo de exemplo
+    └── (seus próximos artigos aqui)
+
+
+COMO PUBLICAR UM NOVO ARTIGO:
+------------------------------
+1. Abra a pasta "artigos/"
+2. Copie o arquivo "_MODELO.html"
+3. Renomeie a cópia com um nome curto sem espaços ou acentos
+   Exemplos: fallen-perfil.html / guia-major.html / ranking-abril.html
+4. Abra o arquivo com o Bloco de Notas (ou VSCode)
+5. Edite apenas as partes marcadas com ✏️ EDITE:
+   - Título da aba (<title>)
+   - Categoria (Notícias / Guia / Cenário BR / Rankings / Perfis / Análise / Especial)
+   - Título do artigo
+   - Data e tempo de leitura
+   - Conteúdo do artigo (parágrafos, seções, listas)
+   - Tags no rodapé
+6. Salve o arquivo
+
+
+COMO ADICIONAR O ARTIGO NA PÁGINA INICIAL:
+-------------------------------------------
+Abra o index.html e encontre o comentário:
+  <!-- ✏️ PARA ADICIONAR NOVO ARTIGO: copie um bloco abaixo, cole no topo e edite -->
+
+Copie o bloco de um artigo existente:
+  <article class="article-card">
+    ...
+  </article>
+
+Cole acima dos outros e edite:
+- O número (01, 02, 03...)
+- A categoria (article-tag)
+- O link (href="artigos/NOME-DO-SEU-ARQUIVO.html")
+- O título
+- O resumo
+- A data
+
+Também atualize o bloco de destaques no topo da página inicial
+se quiser que o artigo apareça no painel lateral direito.
+
+
+COMO SUBIR NO NETLIFY (grátis):
+---------------------------------
+1. Acesse netlify.com e crie uma conta gratuita
+2. No painel, clique em "Add new site" → "Deploy manually"
+3. Arraste a pasta inteira "FragHub/" para a área indicada
+4. O site fica online em segundos com um link provisório
+5. Para atualizar: arraste a pasta novamente com os novos arquivos
+
+
+PARA CONECTAR SEU DOMÍNIO (thefraghub.com):
+---------------------------------------------
+1. No Netlify: Site Settings → Domain Management → Add custom domain
+2. Digite: thefraghub.com
+3. Siga as instruções para apontar o DNS do seu registrador para o Netlify
+4. Pronto — o site ficará disponível no seu domínio em até 24h
+
+
+ELEMENTOS DISPONÍVEIS NOS ARTIGOS:
+------------------------------------
+<p>Parágrafo normal</p>
+
+<h2>Título de seção</h2>
+
+<h3>Subtítulo</h3>
+
+<strong>Texto em negrito</strong>
+
+<ul>
+  <li>Item de lista</li>
+</ul>
+
+<blockquote>Citação em destaque</blockquote>
+
+<!-- Para listas numeradas (Top 5, etc): -->
+<div class="destaque-item">
+  <div class="destaque-num"># 1</div>
+  <div class="destaque-nome">Nome do item</div>
+  <div class="destaque-texto">Descrição do item</div>
+</div>
+
+=========================================
+  Boas publicações! — FragHub
+=========================================

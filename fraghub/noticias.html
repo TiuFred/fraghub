@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notícias de CS2 — FragHub</title>
+  <meta name="description" content="Últimas notícias do cenário nacional e mundial de Counter-Strike 2. Cobertura completa de torneios, resultados e transferências no FragHub.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://thefraghub.com/noticias.html">
+  <meta property="og:title" content="Notícias de CS2 — FragHub">
+  <meta property="og:description" content="Últimas notícias do cenário nacional e mundial de Counter-Strike 2.">
+  <meta property="og:site_name" content="FragHub">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Notícias de CS2 — FragHub">
+  <link rel="canonical" href="https://thefraghub.com/noticias.html">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#0a0a0a; --bg2:#111111; --bg3:#1a1a1a; --accent:#e8a020; --accent2:#3a6bc4; --text:#f0f0f0; --muted:#888; --border:#222; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font-family:'Barlow',sans-serif; font-size:16px; line-height:1.6; }
+    a { color:inherit; text-decoration:none; }
+    header { background:var(--bg2); border-bottom:2px solid var(--accent); position:sticky; top:0; z-index:100; }
+    .header-inner { max-width:1200px; margin:0 auto; padding:0 24px; display:flex; align-items:center; justify-content:space-between; height:64px; }
+    .logo-text { font-family:'Barlow Condensed',sans-serif; font-size:28px; font-weight:900; letter-spacing:1px; }
+    .logo-text span:first-child { color:var(--accent2); }
+    .logo-text span:last-child { color:var(--accent); }
+    nav { display:flex; gap:4px; }
+    nav a { font-family:'Barlow Condensed',sans-serif; font-size:15px; font-weight:600; letter-spacing:0.5px; padding:6px 14px; border-radius:4px; color:var(--muted); transition:color 0.2s,background 0.2s; text-transform:uppercase; }
+    nav a:hover, nav a.active { color:var(--text); background:var(--bg3); }
+    .menu-toggle { display:none; background:none; border:none; color:var(--text); font-size:26px; cursor:pointer; padding:4px 8px; line-height:1; }
+    .mobile-nav { display:none; position:fixed; top:66px; left:0; right:0; bottom:0; background:var(--bg); z-index:99; padding:24px; flex-direction:column; gap:0; overflow-y:auto; }
+    .mobile-nav.open { display:flex; }
+    .mobile-nav a { font-family:'Barlow Condensed',sans-serif; font-size:26px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--text); padding:16px 0; border-bottom:1px solid var(--border); transition:color 0.2s; }
+    .mobile-nav a:hover, .mobile-nav a.active { color:var(--accent); }
+    .page-header { background:var(--bg2); border-bottom:1px solid var(--border); padding:40px 24px; }
+    .page-header-inner { max-width:1200px; margin:0 auto; }
+    .page-tag { display:inline-block; background:var(--accent); color:#000; font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:3px 10px; margin-bottom:12px; }
+    .page-title { font-family:'Barlow Condensed',sans-serif; font-size:42px; font-weight:900; margin-bottom:8px; }
+    .page-desc { font-size:16px; color:#bbb; }
+    .main { max-width:1200px; margin:0 auto; padding:40px 24px; }
+    .section-label { font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--accent); border-bottom:1px solid var(--border); padding-bottom:10px; margin-bottom:24px; }
+    .articles { display:flex; flex-direction:column; gap:24px; }
+    .article-card { display:flex; gap:20px; padding-bottom:24px; border-bottom:1px solid var(--border); }
+    .article-card:last-child { border-bottom:none; }
+    .article-num { font-family:'Barlow Condensed',sans-serif; font-size:48px; font-weight:900; color:var(--border); line-height:1; min-width:40px; padding-top:4px; }
+    .article-body { flex:1; }
+    .article-tag { display:inline-block; font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--accent2); margin-bottom:6px; }
+    .article-title { font-family:'Barlow Condensed',sans-serif; font-size:22px; font-weight:700; line-height:1.2; margin-bottom:8px; }
+    .article-title a:hover { color:var(--accent); transition:color 0.2s; }
+    .article-excerpt { font-size:14px; color:#aaa; margin-bottom:10px; line-height:1.5; }
+    .article-meta { font-size:12px; color:var(--muted); font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:0.5px; }
+    .article-meta strong { color:var(--accent); }
+    .article-read-more { display:inline-block; margin-top:10px; font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--accent); transition:opacity 0.2s; }
+    .article-read-more:hover { opacity:0.7; }
+    footer { background:var(--bg2); border-top:2px solid var(--accent); padding:40px 24px; margin-top:40px; }
+    .footer-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr auto auto; gap:40px; align-items:start; }
+    .footer-logo { font-family:'Barlow Condensed',sans-serif; font-size:24px; font-weight:900; margin-bottom:8px; }
+    .footer-logo span:first-child { color:var(--accent2); }
+    .footer-logo span:last-child { color:var(--accent); }
+    .footer-desc { font-size:13px; color:var(--muted); max-width:280px; line-height:1.5; }
+    .footer-col h4 { font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--accent); margin-bottom:12px; }
+    .footer-col a { display:block; font-size:13px; color:var(--muted); margin-bottom:8px; transition:color 0.2s; font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:0.5px; }
+    .footer-col a:hover { color:var(--text); }
+    .footer-bottom { max-width:1200px; margin:24px auto 0; padding-top:20px; border-top:1px solid var(--border); font-size:12px; color:var(--muted); }
+    @media (max-width:768px) { nav { display:none; } .menu-toggle { display:block; } .page-title { font-size:28px; } .footer-inner { grid-template-columns:1fr; gap:24px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="index.html"><div class="logo-text"><span>FRAG</span><span>HUB</span></div></a>
+      <nav>
+        <a href="index.html">Início</a>
+        <a href="noticias.html" class="active">Notícias</a>
+        <a href="cenario-br.html">Cenário BR</a>
+        <a href="rankings.html">Rankings</a>
+        <a href="guias.html">Guias</a>
+        <a href="perfis.html">Perfis</a>
+        <a href="agenda.html">Agenda</a>
+        <a href="artigos/sobre.html">Sobre</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">☰</button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html">Início</a>
+    <a href="noticias.html" class="active">Notícias</a>
+    <a href="cenario-br.html">Cenário BR</a>
+    <a href="rankings.html">Rankings</a>
+    <a href="guias.html">Guias</a>
+    <a href="perfis.html">Perfis</a>
+    <a href="agenda.html">Agenda</a>
+    <a href="artigos/sobre.html">Sobre</a>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-tag">Notícias</div>
+      <h1 class="page-title">Notícias</h1>
+      <p class="page-desc">Cobertura completa do cenário nacional e mundial de CS2.</p>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="section-label">Publicações</div>
+    <div class="articles">
+      <article class="article-card">
+        <div class="article-num">01</div>
+        <div class="article-body">
+          <div class="article-tag">Análise</div>
+          <h2 class="article-title"><a href="artigos/cs2-vs-csgo.html">CS2 vs CS:GO — o que mudou e o que os pros acham</a></h2>
+          <p class="article-excerpt">Dois anos após o lançamento do CS2, analisamos o que realmente mudou e o que os profissionais brasileiros pensam.</p>
+          <div class="article-meta"><strong>Análise</strong> · 11 de abril de 2026</div>
+          <a href="artigos/cs2-vs-csgo.html" class="article-read-more">Ler mais →</a>
+        </div>
+      </article>
+      <article class="article-card">
+        <div class="article-num">02</div>
+        <div class="article-body">
+          <div class="article-tag">Cenário BR</div>
+          <h2 class="article-title"><a href="artigos/liga-brasileira-cs2.html">Como funciona a Liga Brasileira de CS2?</a></h2>
+          <p class="article-excerpt">A LBCS é a principal competição nacional de CS2. Entenda o formato, os times e onde assistir.</p>
+          <div class="article-meta"><strong>Cenário BR</strong> · 12 de abril de 2026</div>
+          <a href="artigos/liga-brasileira-cs2.html" class="article-read-more">Ler mais →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo"><span>FRAG</span><span>HUB</span></div>
+        <p class="footer-desc">O portal brasileiro de referência para o cenário de Counter-Strike 2.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Seções</h4>
+        <a href="noticias.html">Notícias</a>
+        <a href="cenario-br.html">Cenário BR</a>
+        <a href="rankings.html">Rankings</a>
+        <a href="guias.html">Guias</a>
+        <a href="perfis.html">Perfis</a>
+        <a href="agenda.html">Agenda</a>
+      </div>
+      <div class="footer-col">
+        <h4>FragHub</h4>
+        <a href="artigos/sobre.html">Sobre</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://x.com" target="_blank" rel="noopener">X (Twitter)</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 FragHub · O portal brasileiro de Counter-Strike 2</div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    toggle.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      toggle.textContent = isOpen ? '✕' : '☰';
+    });
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => { mobileNav.classList.remove('open'); toggle.textContent = '☰'; });
+    });
+  </script>
+</body>
+</html>
